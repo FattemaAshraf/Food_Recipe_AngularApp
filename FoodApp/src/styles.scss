@@ -37,3 +37,67 @@ $FoodApp-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+// -------Color pallette
+
+.text-main{
+  color: #4AA35A;
+}
+
+.text-secondry{
+  color: #494949;
+}
+
+.bg-main{
+  background-color: #4AA35A;
+}
+
+.bg-secondry{
+  background-color: #494949;
+}
+
+
+//--------components
+
+.card-auth{
+ background-color: #fff;
+ border-radius: 16px;
+ padding: 1.5rem;
+ h2{
+  color: #494949;
+  margin-top: 1.5rem;
+ }
+ p{
+  color: rgba(73, 73, 73, 0.60);
+ }
+ input{
+  background-color: #f7f7f7 !important;
+ }
+}
+
+//--utilites
+
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  &.primary {
+    background-color: #4AA35A;
+    color: #fff;
+    &:hover{
+      opacity: 0.8;
+    }
+  }
+  &.outline-primary {
+    border: 1px solid #4AA35A;
+    color: #4AA35A;
+    &:hover{
+      opacity: 0.8;
+    }
+  }
+}
