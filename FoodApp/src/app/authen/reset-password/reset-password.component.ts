@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthenService } from '../services/authen.service';
+import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reset-password',
@@ -6,5 +11,45 @@ import { Component } from '@angular/core';
   styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent {
-
+  resetForm = new FormGroup({
+    email: new FormControl(null, [
+      Validators.required,
+      Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}'),
+    ]),
+    password: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(6),
+      Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$'),
+    ]),
+    confirmPassword: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(6),
+      Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$'),
+    ]),
+    seed: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(4),
+    ]),
+  });
+  constructor(
+    private _authService: AuthenService,
+    private toastr: ToastrService,
+    public dialog: MatDialog,
+    private _router: Router
+  ) {}
+  onSubmit(data: FormGroup) {
+    console.log(data.value);
+    this._authService.onLogin(data.value).subscribe({
+      next: (res: any) => {
+        console.log(res);
+      },
+      error: (err: any) => {
+        console.log(err);
+        this.toastr.error('Try Agin', 'Toastr sad!');
+      },
+      complete: () => {
+        this.toastr.success('Hello world!', 'Toastr fun!');
+      },
+    });
+  }
 }

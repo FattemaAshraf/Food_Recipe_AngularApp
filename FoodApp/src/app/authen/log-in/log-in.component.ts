@@ -4,6 +4,7 @@ import { AuthenService } from '../services/authen.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { RequestResetPasswordComponent } from '../request-reset-password/request-reset-password.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-log-in',
@@ -22,17 +23,18 @@ export class LogInComponent {
       Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$'),
     ]),
   });
-
+  responsMessage: string = '';
   constructor(
     private _authService: AuthenService,
     private toastr: ToastrService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _router: Router
   ) {}
 
   onSubmit(data: FormGroup) {
     console.log(data.value);
     this._authService.onLogin(data.value).subscribe({
-      next: (res) => {
+      next: (res: any) => {
         console.log(res);
       },
       error: (err: any) => {
@@ -43,35 +45,37 @@ export class LogInComponent {
         this.toastr.success('Hello world!', 'Toastr fun!');
       },
     });
-   }
+  }
   openDialog(): void {
     const dialogRef = this.dialog.open(RequestResetPasswordComponent, {
       data: {},
-      width:'50%'
+      width: '50%',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
       console.log(result);
       this.onRequestReset(result); //called fun to pass data
     });
   }
 
-  onRequestReset(data:string){
+  onRequestReset(data: string) {
     console.log(data);
     // let finalResult = {
     //   email : data
     // }
     this._authService.onRequestResetPassword(data).subscribe({
-      next: (res) => {
-        console.log(res);
+      next: (res: any) => {
+        console.log(res.message);
+        this.responsMessage = res.message;
       },
       error: (err: any) => {
-        console.log(err);
-        this.toastr.error('Try Agin', 'Toastr sad!');
+        console.log(err.error.message);
+        this.toastr.error(err.error.message, 'error!');
       },
       complete: () => {
-        this.toastr.success('Hello world!', 'Toastr fun!');
+        this.toastr.success(this.responsMessage, 'Done!');
+        this._router.navigate(['/authen/reset-password']);
       },
     });
   }

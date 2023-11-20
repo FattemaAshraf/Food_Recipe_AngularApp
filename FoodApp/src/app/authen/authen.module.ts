@@ -9,7 +9,7 @@ import { RequestResetPasswordComponent } from './request-reset-password/request-
 const routes: Routes = [
   {path:"", redirectTo: "login", pathMatch: "full"},
   {path: 'login', component: LogInComponent},
-
+  {path: 'reset-password', component: ResetPasswordComponent},
 ];
 
 @NgModule({
