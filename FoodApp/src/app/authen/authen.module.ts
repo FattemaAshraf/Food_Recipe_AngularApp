@@ -4,6 +4,7 @@ import { LogInComponent } from './log-in/log-in.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { RequestResetPasswordComponent } from './request-reset-password/request-reset-password.component';
 
 const routes: Routes = [
   {path:"", redirectTo: "login", pathMatch: "full"},
@@ -14,7 +15,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     LogInComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    RequestResetPasswordComponent
   ],
   imports: [
     CommonModule,

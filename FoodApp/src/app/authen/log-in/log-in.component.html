@@ -13,43 +13,51 @@
           <h2>Log in</h2>
           <p>Welcome Back! Please enter your details</p>
 
-          <form>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">
+                <span class="input-group-text h-100" id="basic-addon1">
                   <i class="fa-solid fa-mobile-screen"></i>
                 </span>
               </div>
               <input
+                formControlName="email"
                 type="text"
                 class="form-control"
-                placeholder="Username"
-                aria-label="Username"
+                placeholder="Enter Your Email"
+                aria-label="Email"
                 aria-describedby="basic-addon1"
               />
             </div>
+            <span class="text-danger mb-3" *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+              <span *ngIf="loginForm.get('email')?.hasError('required')">Email is required</span>
+              <span *ngIf="loginForm.get('email')?.hasError('pattern')">Invalid email format</span>
+            </span>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">
-                  <i class="fa-solid fa-lock"></i>              </span>
+                <span class="input-group-text h-100" id="basic-addon1">
+                  <i class="fa-solid fa-lock"></i>
+                </span>
               </div>
               <input
+                formControlName="password"
                 type="text"
                 class="form-control"
                 placeholder="Password"
                 aria-label="Password"
                 aria-describedby="basic-addon1"
               />
+
             </div>
-            <div class="d-flex justify-content-between" >
-              <a href="#" class="text-decoration-none text-secondry" >Register now?</a>
-              <a href="#" class="text-main">Forget password?</a>
+            <div class="d-flex justify-content-between">
+              <a class="text-decoration-none text-secondry"
+                >Register now?</a
+              >
+              <a class="text-main" (click)="openDialog()">Forget password?</a>
             </div>
-            <button type="submit" class="primary my-2 w-100">Log in</button>
+            <button [disabled]="loginForm.invalid" type="submit" class="primary my-2 w-100">Log in</button>
           </form>
-
         </div>
-
       </div>
     </div>
   </div>

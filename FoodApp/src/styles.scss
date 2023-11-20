@@ -63,7 +63,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .card-auth{
  background-color: #fff;
  border-radius: 16px;
- padding: 1.5rem;
+ padding: 1.5rem 3rem;
  h2{
   color: #494949;
   margin-top: 1.5rem;
@@ -73,6 +73,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
  }
  input{
   background-color: #f7f7f7 !important;
+ }
+ input::placeholder{
+  color: #8391A1
+ }
+ i{
+  color: #8391A1
  }
 }
 
@@ -86,6 +92,7 @@ button {
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
+
   &.primary {
     background-color: #4AA35A;
     color: #fff;
@@ -100,4 +107,7 @@ button {
       opacity: 0.8;
     }
   }
+}
+a{
+  cursor: pointer;
 }
