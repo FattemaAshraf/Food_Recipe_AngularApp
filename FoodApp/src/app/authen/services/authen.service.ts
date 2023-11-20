@@ -12,6 +12,9 @@ export class AuthenService {
     return this._httpClient.post('Users/Login', data);
    }
    onRequestResetPassword(data : string){
-    return this._httpClient.post('Reset/Request', {email:data});
+    return this._httpClient.post('Users/Reset/Request', {email:data});
+   }
+   onResetPassword(data : string){
+    return this._httpClient.post('Users/Reset', data);
    }
 }

@@ -35,11 +35,10 @@ export class ResetPasswordComponent {
     private _authService: AuthenService,
     private toastr: ToastrService,
     public dialog: MatDialog,
-    private _router: Router
   ) {}
   onSubmit(data: FormGroup) {
     console.log(data.value);
-    this._authService.onLogin(data.value).subscribe({
+    this._authService.onResetPassword(data.value).subscribe({
       next: (res: any) => {
         console.log(res);
       },
