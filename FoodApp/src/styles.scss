@@ -64,6 +64,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
  background-color: #fff;
  border-radius: 16px;
  padding: 1.5rem 3rem;
+ box-shadow: -5px 36px 109px -17px rgba(0,0,0,0.75);
+-webkit-box-shadow: -5px 36px 109px -17px rgba(0,0,0,0.75);
+-moz-box-shadow: -5px 36px 109px -17px rgba(0,0,0,0.75);
  h2{
   color: #494949;
   margin-top: 1.5rem;
@@ -80,6 +83,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
  i{
   color: #8391A1
  }
+ .eye-icon{
+  position: absolute;
+  cursor: pointer;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+  z-index: 100;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+}
 }
 
 //--utilites

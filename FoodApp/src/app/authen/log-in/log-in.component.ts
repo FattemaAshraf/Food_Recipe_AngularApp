@@ -55,7 +55,9 @@ export class LogInComponent {
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
       console.log(result);
-      this.onRequestReset(result); //called fun to pass data
+      if(result){
+        this.onRequestReset(result); //called fun to pass data
+      }
     });
   }
 
@@ -76,6 +78,7 @@ export class LogInComponent {
       complete: () => {
         this.toastr.success(this.responsMessage, 'Done!');
         this._router.navigate(['/authen/reset-password']);
+        localStorage.setItem('email',data);
       },
     });
   }

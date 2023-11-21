@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent {
+  hide = true;
+  userEmail = localStorage.getItem('email');
   resetForm = new FormGroup({
     email: new FormControl(null, [
       Validators.required,
