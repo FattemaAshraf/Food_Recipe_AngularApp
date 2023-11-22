@@ -24,6 +24,7 @@ export class LogInComponent {
     ]),
   });
   responsMessage: string = '';
+  hide = true;
   constructor(
     private _authService: AuthenService,
     private toastr: ToastrService,
@@ -36,6 +37,9 @@ export class LogInComponent {
     this._authService.onLogin(data.value).subscribe({
       next: (res: any) => {
         console.log(res);
+        localStorage.setItem('userToken', res.token)
+        this._authService.getProfile();
+
       },
       error: (err: any) => {
         console.log(err);
